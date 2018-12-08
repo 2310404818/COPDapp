@@ -1,0 +1,83 @@
+package app.example.com.myapplication.doctorPersonalCenter;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import app.example.com.myapplication.R;
+
+
+public class DoctorPersonalCenterFragment extends Fragment {
+    private View view;
+
+    //底下导航栏
+   private DoctorBottomActivity doctorBottomActivity;
+
+    private TextView tv_doctor_title,tv_doctor_username,tv_doctor_perinfo,tv_doctor_sign,tv_doctor_setting;
+
+    private ImageButton ib_doctor_perinfo,ib_doctor_sign,ib_doctor_setting;
+    private ImageView iv_doctor_portrait;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        iv_doctor_portrait=(ImageView)view.findViewById(R.id.iv_doctor_portrait);
+        ib_doctor_perinfo=(ImageButton)view.findViewById(R.id.ib_doctor_perinfo);
+        ib_doctor_sign=(ImageButton)view.findViewById(R.id.ib_doctor_sign);
+        ib_doctor_setting=(ImageButton)view.findViewById(R.id.ib_doctor_setting);
+        //获取界面
+        view = inflater.inflate(R.layout.fragment_doctor_personal_center, container, false);
+        //初始化界面信息
+        initUIComponents();
+        //监听
+        addListeners();
+
+        return view;
+    }
+
+    //导航栏跳转界面
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        this.doctorBottomActivity = ((DoctorBottomActivity) getActivity());
+    }
+
+
+
+    //初始化界面
+    private void initUIComponents() {
+        tv_doctor_perinfo=(TextView)view.findViewById(R.id.tv_doctor_perinfo);
+        tv_doctor_title=(TextView)view.findViewById(R.id.tv_doctor_title);
+        tv_doctor_setting=(TextView)view.findViewById(R.id.tv_doctor_setting);
+        tv_doctor_username=(TextView)view.findViewById(R.id.tv_doctor_username);
+        tv_doctor_sign=(TextView)view.findViewById(R.id.tv_doctor_sign);
+
+
+        iv_doctor_portrait=(ImageView)view.findViewById(R.id.iv_doctor_portrait);
+        ib_doctor_perinfo=(ImageButton)view.findViewById(R.id.ib_doctor_perinfo);
+        ib_doctor_setting=(ImageButton)view.findViewById(R.id.ib_doctor_setting);
+        ib_doctor_sign=(ImageButton)view.findViewById(R.id.ib_doctor_sign);
+    }
+
+    //监听
+    private void addListeners() {
+
+        ib_doctor_perinfo.setOnClickListener(e->openNew(DoctorMyInfoActivity.class));
+        ib_doctor_sign.setOnClickListener(e->openNew(DoctorSigningActivity.class));
+       // ib_doctor_setting.setOnClickListener(e->openNew(DoctorSettingActivity.class));
+    }
+
+    private void openNew(Class c) {
+        // TODO 是否更新界面
+     //   Intent intent = new Intent(doctorBottomActivity, c);
+
+     //   startActivity(intent);
+    }
+}
